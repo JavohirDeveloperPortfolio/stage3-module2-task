@@ -1,3 +1,6 @@
 dependencies {
     implementation project(':module-repository')
+    // https://mvnrepository.com/artifact/javax.validation/validation-api
+    implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+
 }
