@@ -10,7 +10,7 @@ public class AuthorEntity implements BaseEntity<Long> {
     private LocalDateTime createDate;
     private LocalDateTime lastUpdateDate;
 
-    public AuthorEntity(String name) {
+    public AuthorEntity(Long id, String name) {
         this.name = name;
         this.createDate = LocalDateTime.now();
         this.lastUpdateDate = LocalDateTime.now();

@@ -3,36 +3,39 @@ package com.mjc.school.service.implementation;
 import com.mjc.school.repository.implement.AuthorRepository;
 import com.mjc.school.repository.model.impl.AuthorEntity;
 import com.mjc.school.service.BaseService;
-import com.mjc.school.service.dto.AuthorDto;
+import com.mjc.school.service.dto.AuthorDtoRequest;
+import com.mjc.school.service.dto.AuthorDtoResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class AuthorService implements BaseService<AuthorDto, AuthorEntity, Long> {
+public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoResponse, Long> {
     private final AuthorRepository authorRepository;
 
+    @Autowired
     public AuthorService(AuthorRepository authorRepository) {
         this.authorRepository = authorRepository;
     }
 
     @Override
-    public List<AuthorEntity> readAll() {
-        return authorRepository.readAll();
-    }
-
-    @Override
-    public AuthorEntity readById(Long id) {
+    public List<AuthorDtoResponse> readAll() {
         return null;
     }
 
     @Override
-    public AuthorEntity create(AuthorDto createRequest) {
+    public AuthorDtoResponse readById(Long id) {
         return null;
     }
 
     @Override
-    public AuthorEntity update(AuthorDto updateRequest) {
+    public AuthorDtoResponse create(AuthorDtoRequest createRequest) {
+        return null;
+    }
+
+    @Override
+    public AuthorDtoResponse update(AuthorDtoRequest updateRequest) {
         return null;
     }
 

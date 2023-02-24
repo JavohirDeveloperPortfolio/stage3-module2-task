@@ -1,15 +1,26 @@
 package com.mjc.school.repository.implement;
 
 import com.mjc.school.repository.BaseRepository;
+import com.mjc.school.repository.data.DataSource;
 import com.mjc.school.repository.model.impl.AuthorEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class AuthorRepository implements BaseRepository<AuthorEntity, Long> {
+    private final DataSource dataSource;
+
+    @Autowired
+    public AuthorRepository(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
     @Override
     public List<AuthorEntity> readAll() {
-        return null;
+        return dataSource.getAuthors();
     }
 
     @Override
