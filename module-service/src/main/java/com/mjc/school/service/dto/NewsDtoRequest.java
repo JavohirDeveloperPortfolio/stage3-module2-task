@@ -1,7 +1,6 @@
 package com.mjc.school.service.dto;
 
-public record NewsDtoRequest(Long id,
-                             String title,
+public record NewsDtoRequest(String title,
                              String content,
                              Long authorId) {
 }

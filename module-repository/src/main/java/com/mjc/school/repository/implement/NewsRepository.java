@@ -2,7 +2,7 @@ package com.mjc.school.repository.implement;
 
 import com.mjc.school.repository.BaseRepository;
 import com.mjc.school.repository.data.DataSource;
-import com.mjc.school.repository.model.impl.NewsEntity;
+import com.mjc.school.repository.model.impl.NewsModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class NewsRepository implements BaseRepository<NewsEntity,Long> {
+public class NewsRepository implements BaseRepository<NewsModel,Long> {
     private final DataSource dataSource;
 
     @Autowired
@@ -19,22 +19,28 @@ public class NewsRepository implements BaseRepository<NewsEntity,Long> {
     }
 
     @Override
-    public List<NewsEntity> readAll() {
+    public List<NewsModel> readAll() {
         return dataSource.getNews();
     }
 
     @Override
-    public Optional<NewsEntity> readById(Long id) {
+    public Optional<NewsModel> readById(Long id) {
+        List<NewsModel> list = dataSource.getNews();
+        for (NewsModel model : list) {
+            if (model.getId().equals(id)){
+                return Optional.of(model);
+            }
+        }
         return Optional.empty();
     }
 
     @Override
-    public NewsEntity create(NewsEntity entity) {
+    public NewsModel create(NewsModel entity) {
         return null;
     }
 
     @Override
-    public NewsEntity update(NewsEntity entity) {
+    public NewsModel update(NewsModel entity) {
         return null;
     }
 

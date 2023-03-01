@@ -17,12 +17,12 @@ public class AuthorController implements BaseController<AuthorDtoResponse, Autho
 
     @Override
     public List<AuthorDtoResponse> readAll() {
-        return null;
+        return authorService.readAll();
     }
 
     @Override
     public AuthorDtoResponse readById(Long id) {
-        return null;
+        return authorService.readById(id);
     }
 
     @Override

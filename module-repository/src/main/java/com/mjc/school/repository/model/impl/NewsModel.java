@@ -3,9 +3,10 @@ package com.mjc.school.repository.model.impl;
 import com.mjc.school.repository.model.BaseEntity;
 
 import java.time.LocalDateTime;
+import java.util.concurrent.atomic.AtomicLong;
 
-public class NewsEntity implements BaseEntity<Long> {
-//    private static AtomicLong nextId = new AtomicLong();
+public class NewsModel implements BaseEntity<Long> {
+    private static AtomicLong nextId = new AtomicLong();
 
     private Long id;
     private String title;
@@ -14,8 +15,8 @@ public class NewsEntity implements BaseEntity<Long> {
     private LocalDateTime lastUpdateDate;
     private Long authorId;
 
-    public NewsEntity(Long id, String title, String content, Long authorId) {
-        this.id = id;
+    public NewsModel(String title, String content, Long authorId) {
+        this.id = nextId.getAndIncrement();
         this.title = title;
         this.content = content;
         this.authorId = authorId;

@@ -8,8 +8,8 @@ public enum ServiceErrorCode {
     VALIDATE_NULL_STRING(Constants.ERROR_000011, "%s can not be null. %s is null"),
     VALIDATE_STRING_LENGTH(
             Constants.ERROR_000012, "%s can not be less than %d and more than %d symbols. %s is %s"),
-    VALIDATE_INT_VALUE(Constants.ERROR_000013, "%s should be number");
-
+    VALIDATE_INT_VALUE(Constants.ERROR_000013, "%s should be number"),
+    EXCEPTION_DURING_CREATE_NEWS(Constants.ERROR_000500, "Error during create news");
     private final String errorMessage;
 
     ServiceErrorCode(String errorCode, String message) {
@@ -31,6 +31,7 @@ public enum ServiceErrorCode {
         private static final String ERROR_000011 = "000011";
         private static final String ERROR_000012 = "000012";
         private static final String ERROR_000013 = "000013";
+        private static final String ERROR_000500 = "000500";
 
         private Constants() {}
     }

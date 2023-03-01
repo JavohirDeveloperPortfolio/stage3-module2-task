@@ -3,14 +3,18 @@ package com.mjc.school.repository.model.impl;
 import com.mjc.school.repository.model.BaseEntity;
 
 import java.time.LocalDateTime;
+import java.util.concurrent.atomic.AtomicLong;
 
-public class AuthorEntity implements BaseEntity<Long> {
+public class AuthorModel implements BaseEntity<Long> {
+    private static AtomicLong nextId = new AtomicLong();
+
     private Long id;
     private String name;
     private LocalDateTime createDate;
     private LocalDateTime lastUpdateDate;
 
-    public AuthorEntity(Long id, String name) {
+    public AuthorModel(String name) {
+        this.id = nextId.getAndIncrement();
         this.name = name;
         this.createDate = LocalDateTime.now();
         this.lastUpdateDate = LocalDateTime.now();

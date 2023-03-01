@@ -1,7 +1,7 @@
 package com.mjc.school.repository.data;
 
-import com.mjc.school.repository.model.impl.AuthorEntity;
-import com.mjc.school.repository.model.impl.NewsEntity;
+import com.mjc.school.repository.model.impl.AuthorModel;
+import com.mjc.school.repository.model.impl.NewsModel;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -15,36 +15,35 @@ import java.util.Random;
 
 @Component
 public class DataSource {
-    private final List<AuthorEntity> authors;
-    private final List<NewsEntity> news;
+    private final List<AuthorModel> authors;
+    private final List<NewsModel> news;
     private final Random random = new Random();
-
 
     public DataSource() {
         this.authors = getAuthorsData();
         this.news = getNewsData();
     }
 
-    public List<AuthorEntity> getAuthors(){
+    public List<AuthorModel> getAuthors(){
         return authors;
     }
 
-    public List<NewsEntity> getNews(){
+    public List<NewsModel> getNews(){
         return news;
     }
 
-    private List<AuthorEntity> getAuthorsData(){
-        List<AuthorEntity> authorEntityList = new ArrayList<>();
+    private List<AuthorModel> getAuthorsData(){
+        List<AuthorModel> authorEntityList = new ArrayList<>();
         for (int i = 1; i <= 30; i++) {
-            authorEntityList.add(new AuthorEntity((long)i,readFile("authors")));
+            authorEntityList.add(new AuthorModel(readFile("authors")));
         }
         return authorEntityList;
     }
 
-    private List<NewsEntity> getNewsData(){
-        List<NewsEntity> newsEntityList = new ArrayList<>();
+    private List<NewsModel> getNewsData(){
+        List<NewsModel> newsEntityList = new ArrayList<>();
         for (int i = 1; i <= 30; i++) {
-            newsEntityList.add(new NewsEntity((long)i,readFile("news"),readFile("content"),(long)i));
+            newsEntityList.add(new NewsModel(readFile("news"),readFile("content"),(long)i));
         }
         return newsEntityList;
     }

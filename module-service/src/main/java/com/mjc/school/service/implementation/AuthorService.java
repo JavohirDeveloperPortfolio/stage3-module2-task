@@ -1,14 +1,19 @@
 package com.mjc.school.service.implementation;
 
 import com.mjc.school.repository.implement.AuthorRepository;
-import com.mjc.school.repository.model.impl.AuthorEntity;
+import com.mjc.school.repository.model.impl.AuthorModel;
 import com.mjc.school.service.BaseService;
 import com.mjc.school.service.dto.AuthorDtoRequest;
 import com.mjc.school.service.dto.AuthorDtoResponse;
+import com.mjc.school.service.exceptions.AuthorNotFoundException;
+import com.mjc.school.service.mapper.AuthorMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
+import static com.mjc.school.service.exceptions.ServiceErrorCode.AUTHOR_ID_DOES_NOT_EXIST;
 
 @Service
 public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoResponse, Long> {
@@ -21,12 +26,21 @@ public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoRes
 
     @Override
     public List<AuthorDtoResponse> readAll() {
-        return null;
+        return authorRepository.readAll().stream()
+                .map(AuthorMapper.INSTANCE::authorModelToDto)
+                .toList();
     }
 
     @Override
     public AuthorDtoResponse readById(Long id) {
-        return null;
+        try {
+            Optional<AuthorModel> authorModel = authorRepository.readById(id);
+            return AuthorMapper.INSTANCE.authorModelToDto(authorModel.get());
+        }catch (RuntimeException e){
+            throw new AuthorNotFoundException(
+                    String.format(String.valueOf(AUTHOR_ID_DOES_NOT_EXIST.getMessage()), id)
+            );
+        }
     }
 
     @Override

@@ -28,9 +28,11 @@ public class Menu {
                     case 1:menuHelper.getAllNews();break;
                     case 2:menuHelper.getAllAuthors();break;
                     case 3:menuHelper.getNewsById();break;
+                    case 4:menuHelper.getAuthorById();break;
+                    case 5:menuHelper.createNews();break;
                 }
-            }catch (Exception e){
-
+            }catch (RuntimeException e){
+                System.out.println(e.getMessage());
             }
         }
     }
